@@ -4,17 +4,17 @@ const connection = require('../DataBase/connection');
 module.exports = { 
 
     async create(req,res){
-        const {Name} = req.body;
+        const {name} = req.body;
 
-        await connection('Culture').insert({
-           Name
+        await connection('culture').insert({
+           name
         })
 
-    return res.json({Name});
+    return res.json({name});
     },
 
     async index(req,res){
-        const cultures = await connection('Culture').select('*');
+        const cultures = await connection('culture').select('*');
         return res.json(cultures);
     }    
 } 

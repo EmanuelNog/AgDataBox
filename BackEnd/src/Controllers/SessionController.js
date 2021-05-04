@@ -4,14 +4,14 @@ module.exports = {
     async create(req,res) {
         const{id} = req.body;
 
-        const ong = await connection('User')
+        const user = await connection('user')
         .where('id',id)
         .select('name')
         .first();
 
-        if(!ongs){
-            return res.status(400).json({error: 'No User found with this ID'});
+        if(!user){
+            return res.status(400).json({error: 'No User found with this data'});
         }
-    return res.json(ong);
+    return res.json(user);
     }
 }

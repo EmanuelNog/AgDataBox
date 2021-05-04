@@ -1,15 +1,15 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('Crop', function(table){
-        table.string('ID').primary();
-        table.string('Name').notNullable();
-        table.string('StartDate').notNullable();
-        table.string('FinishDate').notNullable();
-        table.string('culture_ID').notNullable();
-        table.foreign('culture_ID').references('ID').inTable('Culture')
+    return knex.schema.createTable('crop', function(table){
+        table.string('id').primary();
+        table.string('name').notNullable();
+        table.string('start_date').notNullable();
+        table.string('finish_date').notNullable();
+        table.string('culture_id').notNullable();
+        table.foreign('culture_id').references('id').inTable('culture')
     });
 };
 
 exports.down = function(knex) {
-    knex.schema.dropTable('Crop');
+   return knex.schema.dropTable('crop');
 };

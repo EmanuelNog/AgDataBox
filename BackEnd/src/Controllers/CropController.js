@@ -1,55 +1,50 @@
 const connection = require('../DataBase/connection')
 const crypto = require('crypto');
-const { response } = require('express');
 
 
 module.exports= {
-
     async create(req,res){
-        const {Name, StartDate, FinishDate} = req.body;
+        const {name, start_date, finish_date} = req.body;
 
-        const [count] = await connection('Crop').count()
-        
-        response.header('countMaxQuantity',count['count(*)']);
+        const [count] = await connection('crop').count()
+        res.header('countMaxQuantity',count['count(*)']);
 
-        const culture_idVector = await connection('Culture').select('ID').where('ID',1);
-        const culture_ID = culture_idVector[0].ID;
-        const user_ID = req.headers.authorization;
+        const culture_idVector = await connection('culture').select('id').where('id',1);
+        const culture_id = culture_idVector[0].id;
+        const user_id = req.headers.authorization;
         
         
-        const ID = crypto.randomBytes(4).toString('HEX');
+        const id = crypto.randomBytes(4).toString('HEX');
 
-        await connection('Crop').insert({
-            ID,
-            Name,
-            StartDate,
-            FinishDate,
-            culture_ID,
-            user_ID
+        await connection('crop').insert({
+            id,
+            name,
+            start_date,
+            finish_date,
+            culture_id,
+            user_id
         })
-        return res.json({ID,user_ID});
+        return res.json({id,user_id});
     },
 
     async index(req,res){
-        const crops = await connection('Crop').select('*');
+        const crops = await connection('crop').select('*');
         return res.json(crops);
     },
 
-
     async delete(req,res){
         const {id} = req.params;
-        const user_ID = req.headers.authorization;
+        const user_id = req.headers.authorization;
      
+        const crop = await connection('crop').where('id',id)
+        .select('user_id').first();
 
-        const crop = await connection('Crop').where('ID',id)
-        .select('user_ID').first();
-
-        console.log(crop.user_ID, user_ID);
-        if(crop.user_ID != user_ID){
+        console.log(crop.user_id, user_id);
+        if(crop.user_id != user_id){
             return res.status(401).json({ error: 'Operation not permitted.'});
         }
 
-        await connection('Crop').where('ID',id).delete();
+        await connection('crop').where('id',id).delete();
 
         return res.status(204).send();
     }
