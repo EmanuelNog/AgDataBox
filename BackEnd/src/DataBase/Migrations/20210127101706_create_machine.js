@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.decimal('year').notNullable();
 
         table.string('user_id').notNullable();
-        table.string('operation_machine_id'); // segundo oque eu li la posso deixar uma foreign key nula por enquanto
+        table.string('operation_machine_id');
 
         table.foreign('user_id').references('id').inTable('user');
         //table.foreign('operation_machine_id').references('id').inTable('operation');

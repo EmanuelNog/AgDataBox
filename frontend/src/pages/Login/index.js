@@ -18,11 +18,11 @@ export default function Login(){
             const response = await api.post('login',{ id }) //é basicamente o comando que faz o mesmo que o insomnia
 
             localStorage.setItem('userId',id);
-            localStorage.setItem('userName',response.data.Name);
+            localStorage.setItem('userName',response.data.name);
 
-            history.push('/menu');
+            history.push('/machineProfile');
         } catch(err){
-            alert('Falha no login, tente novamente');
+            alert('Falha no login, tente novamente!');
         }
     }
 

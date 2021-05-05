@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Menu from './pages/Menu';
+import MachineProfile from './pages/MachineProfile';
 
 export default function Routes(){
     return(
@@ -12,6 +13,7 @@ export default function Routes(){
             <Route path="/" exact component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/menu" component={Menu}/>
+            <Route path="/machineProfile" component={MachineProfile}/>
         </Switch>
         </BrowserRouter>
     );

@@ -8,29 +8,29 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function Register() {
-    const [Name, setName] = useState('');
-    const [Email, setEmail] = useState('');
-    const [PhoneNumber, setPhone] = useState('');
-    const [Password, setPassword] = useState('');
-    const [City, setCity] = useState('');
-    const [Uf, setUf] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone_number, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [city, setCity] = useState('');
+    const [uf, setUf] = useState('');
 
     const history = useHistory();
 
     async function handleRegister(e) {
         e.preventDefault();
         const data = {
-            Name,
-            Email,
-            PhoneNumber,
-            Password,
-            City,
-            Uf
+            name,
+            email,
+            phone_number,
+            password,
+            city,
+            uf
         };
         console.log(data); 
         try {
             const response = await api.post('register', data);
-            alert(`Seu ID de acesso: ${response.data.ID}`)
+            alert(`Seu ID de acesso: ${response.data.id}`)
             history.push('/');
         } catch (err) {
             alert('Erro no cadastro tente novamente')
@@ -55,33 +55,33 @@ export default function Register() {
                 <form onSubmit={handleRegister}>
 
                     <input placeholder="Nome"
-                        value={Name}
+                        value={name}
                         onChange={e => setName(e.target.value)}
                     />
 
                     <input type="Email" placeholder="E-mail"
-                        value={Email}
+                        value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
 
                     <input placeholder="Numero de Telefone"
-                        value={PhoneNumber}
+                        value={phone_number}
                         onChange={e => setPhone(e.target.value)}
                     />
                     <input placeholder="senha"
-                        value={Password}
+                        value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
 
                     <div className="input-group">
 
                         <input placeholder="Cidade"
-                            value={City}
+                            value={city}
                             onChange={e => setCity(e.target.value)}
                         />
 
                         <input placeholder="Uf" style={{ width: 80 }}
-                            value={Uf}
+                            value={uf}
                             onChange={e => setUf(e.target.value)}
                         />
 

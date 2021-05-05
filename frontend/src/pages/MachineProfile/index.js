@@ -1,52 +1,64 @@
-import React,{useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom';
-import './styles.css';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
+import './styles.css';
 
-export default function Login(){
-    const [id,setId] = useState('');
+
+export default function Register() {
+    const [name, setName] = useState('');
+    const [year, setEmail] = useState('');
+
     const history = useHistory();
+    const userId = localStorage.getItem('userId');
 
-    async function handleLogin(e){
+    async function handleRegister(e) {
         e.preventDefault();
-        
-        try{
-            const response = await api.post('login',{ id })
-
-            localStorage.setItem('userId',id);
-            localStorage.setItem('userName',response.data.Name);
-
-            history.push('/menu');
-        } catch(err){
-            alert('Falha no login, tente novamente');
+        const data = {
+            name,
+            year
+        };
+        console.log(userId);
+        try {
+            const response = await api.post('machine', data, { headers:{Authorization: userId} });
+            alert(`Seu ID de acesso: ${response.data.id}`)      //ID ou id?
+            history.push('/machineProfile');
+        } catch (err) {
+            alert('Erro no cadastro tente novamente!')
         }
     }
 
     return (
-        <div className="login-container">
-            <section className="form">
-                <img src={logoImg} alt="Be The Hero"/>
-
-                <form onSubmit={handleLogin} >
-                    <h1> Faca seu logon</h1>
-
-                    <input placeholder="Sua ID"
-                    value={id}
-                    onChange={e=> setId(e.target.value)}
-                    />
+        <div className="register-container">
+            <div className="content">
+                <section>
                     
-                    <button className="button" type="submit">Entrar</button>
-                    
-                    <Link className = "back-link" to="/register">
-                        <FiLogIn size={16} color="#E02041"/>
-                        Nao tenho cadastro
+
+                    <h1>Cadastro</h1>
+                    <p>cadastro de maquina</p>
+
+                    <Link className="back-link" to="/">
+                        <FiArrowLeft size={16} color="#E02041" />
+                        ja cadastrei
                     </Link>
-                    
-                </form>
-            </section>
 
-            <img src={heroesImg}/>
+                </section>
+                <form onSubmit={handleRegister}>
+
+                    <input placeholder="Nome"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+
+                    <input type="Ano" placeholder="aqui é onde fica o placeholder ano "
+                        value={year}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+
+                    <button className="button" type="submit">Cadastrar</button>
+                </form>
+            </div>
         </div>
     );
 }
