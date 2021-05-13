@@ -14,16 +14,17 @@ deletar? cuidado se deletar uma migration que ja fui usada é um pepino, tem que
 
 ===========================
 
+    Nome
+    Tipo de Solo
+    Area Selecionada:  vem do DataboxApi
+},
+
 {"Entidades:
 UserAccount{
     Email: varchar
     Senha: varchar 
 },
-Area{
-    Nome
-    Tipo de Solo
-    Area Selecionada:  vem do DataboxApi
-},
+
 Safra{
     Nome
     Cultura

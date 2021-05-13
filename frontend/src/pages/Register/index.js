@@ -41,10 +41,9 @@ export default function Register() {
         <div className="register-container">
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="Be the hero" />
 
                     <h1>Cadastro</h1>
-                    <p>Faca seu cadastro, bla bla bla</p>
+                    <p>Faca seu cadastro</p>
 
                     <Link className="back-link" to="/">
                         <FiArrowLeft size={16} color="#E02041" />

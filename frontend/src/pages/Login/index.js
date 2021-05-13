@@ -3,8 +3,11 @@ import {Link, useHistory} from 'react-router-dom';
 import {FiLogIn} from 'react-icons/fi';
 import './styles.css';
 
+//<img src={logoImg} alt="Be The Hero"/>
+
 import heroesImg from '../../assets/landing.svg';
 import logoImg from '../../assets/logo.svg';
+import box from '../../assets/box.svg';
 import api from '../../services/api';
 
 export default function Login(){
@@ -20,7 +23,7 @@ export default function Login(){
             localStorage.setItem('userId',id);
             localStorage.setItem('userName',response.data.name);
 
-            history.push('/machineProfile');
+            history.push('/menu');
         } catch(err){
             alert('Falha no login, tente novamente!');
         }
@@ -28,13 +31,13 @@ export default function Login(){
 
     return (
         <div className="login-container">
+        
             <section className="form">
-                <img src={logoImg} alt="Be The Hero"/>
-
+            <img src={box}/>
                 <form onSubmit={handleLogin} >
-                    <h1> Faca seu login</h1>
+                    <h1> DataBox Login </h1>
 
-                    <input placeholder="Sua ID"
+                    <input placeholder="ID"
                     value={id}
                     onChange={e=> setId(e.target.value)}
                     />
@@ -49,7 +52,6 @@ export default function Login(){
                 </form>
             </section>
 
-            <img src={heroesImg}/>
         </div>
     );
 }

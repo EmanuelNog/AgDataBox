@@ -18,8 +18,25 @@ module.exports = {
 
         return res.json({id});      
     },
+
     async index(req,res){
         const machines = await connection('machine').select('*');
         return res.json(machines);
+    },
+
+    async delete(req,res){
+        
+        const {id} = req.params;
+     
+        try{
+        await connection('machine').where('id',id).delete();
+
+        return res.status(204).send();
+
+        }catch(error){
+            console.log(error);
+            return res.status(401).send();
+        }
+        
     }
 }

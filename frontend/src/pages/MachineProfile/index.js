@@ -10,6 +10,7 @@ export default function Register() {
     const [name, setName] = useState('');
     const [year, setEmail] = useState('');
 
+
     const history = useHistory();
     const userId = localStorage.getItem('userId');
 
@@ -19,11 +20,11 @@ export default function Register() {
             name,
             year
         };
-        console.log(userId);
+
         try {
             const response = await api.post('machine', data, { headers:{Authorization: userId} });
             alert(`Seu ID de acesso: ${response.data.id}`)      //ID ou id?
-            history.push('/machineProfile');
+            history.push('/');
         } catch (err) {
             alert('Erro no cadastro tente novamente!')
         }
@@ -51,7 +52,7 @@ export default function Register() {
                         onChange={e => setName(e.target.value)}
                     />
 
-                    <input type="Ano" placeholder="aqui é onde fica o placeholder ano "
+                    <input type="Ano" placeholder="Ano"
                         value={year}
                         onChange={e => setEmail(e.target.value)}
                     />

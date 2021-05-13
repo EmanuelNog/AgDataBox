@@ -15,6 +15,7 @@ routes.get('/register', UserController.index)
 
 routes.post('/machine', MachineController.create)
 routes.get('/machine', MachineController.index)
+routes.delete('/machine/:id', MachineController.delete)
  
 routes.post('/crop', CropController.create)
 routes.get('/crop', CropController.index)
