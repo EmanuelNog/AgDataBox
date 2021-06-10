@@ -125,3 +125,16 @@ agendamento{
     "Area"
     "Safra"
 }.
+
+//uma funcao de navegacao mais generica
+    // function navigateTo(place, param = NULL) {
+    //     navigation.navigate(place, { param });
+    // }
+    // onPress={() => navigateTo('Detail', incident)}
+    // function navigateToLogin() {
+    //     navigation.navigate('Login');
+    //   }
+
+            <FontAwesome5 name="truck-moving" size={24} color="green" />
+            <Feather name="arrow-right" size={16} color="#E02041" />
+            <Text style={styles.detailsButtonText}>Mapa</Text>

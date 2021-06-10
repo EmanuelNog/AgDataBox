@@ -16,7 +16,7 @@ module.exports = {
             user_id
         })
 
-        return res.json({id});      
+        return res.json({id});
     },
 
     async index(req,res){

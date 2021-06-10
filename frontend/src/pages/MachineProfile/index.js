@@ -23,8 +23,7 @@ export default function Register() {
 
         try {
             const response = await api.post('machine', data, { headers:{Authorization: userId} });
-            alert(`Seu ID de acesso: ${response.data.id}`)      //ID ou id?
-            history.push('/');
+            history.push('/menu');
         } catch (err) {
             alert('Erro no cadastro tente novamente!')
         }
@@ -39,7 +38,7 @@ export default function Register() {
                     <h1>Cadastro</h1>
                     <p>cadastro de maquina</p>
 
-                    <Link className="back-link" to="/">
+                    <Link className="back-link" to="/menu">
                         <FiArrowLeft size={16} color="#E02041" />
                         ja cadastrei
                     </Link>
